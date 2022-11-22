@@ -63,6 +63,15 @@
                 android:padding="20dp"
                 android:src="@drawable/search"/>
 
+            <HorizontalScrollView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7">
+
+
+
+            </HorizontalScrollView>
+
         </LinearLayout>
 
     </LinearLayout>
@@ -71,6 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.6"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -104,10 +114,12 @@
             android:layout_height="match_parent"
             android:src="@drawable/contacts"/>
         <ImageView
+            android:id="@+id/IDsetting"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:padding="20dp"
             android:layout_height="match_parent"
+            android:onClick="takeScreenShot"
             android:src="@drawable/setting"/>
 
     </LinearLayout>
