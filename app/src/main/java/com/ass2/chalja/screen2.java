@@ -53,15 +53,13 @@ public class screen2 extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                registerUser();
-//                Toast.makeText(screen2.this, "signup clicked", Toast.LENGTH_SHORT).show();
+                registerUser();
 
                 Intent i = new Intent(screen2.this, screen3.class);
                 startActivity(i);
 
             }
         });
-//        signup.setOnClickListener(this);
     }
 
     private void registerUser() {
@@ -72,30 +70,50 @@ public class screen2 extends AppCompatActivity {
         progressDialog.setMessage("Registering user...");
         progressDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                Constants.url_registerUser,
+        StringRequest request=new StringRequest(
+                Request.Method.POST,
+                "http://172.16.34.212/smd2/register2.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        progressDialog.dismiss();
-
                         try {
-                            JSONObject jsonObject = new JSONObject(response);
-
-                            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
-
+                            JSONObject obj=new JSONObject(response);
+                            if(obj.getInt("resultcode")==1)
+                            {
+                                Toast.makeText(
+                                        screen2.this,
+                                        obj.get("msg").toString()
+                                        ,Toast.LENGTH_LONG
+                                ).show();
+                            }
+                            else{
+                                Toast.makeText(
+                                        screen2.this,
+                                        obj.get("msg").toString()
+                                        ,Toast.LENGTH_LONG
+                                ).show();
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
+
+                            Toast.makeText(
+                                    screen2.this,
+                                    "Incorrect JSON"
+                                    ,Toast.LENGTH_LONG
+                            ).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        progressDialog.hide();
-                        Toast.makeText(getApplicationContext(), "Error Message", Toast.LENGTH_LONG).show();
+                        Toast.makeText(
+                                screen2.this,
+                                error.getMessage()
+                                ,Toast.LENGTH_LONG
+                        ).show();
                     }
-                }) {
+                }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
@@ -105,21 +123,7 @@ public class screen2 extends AppCompatActivity {
                 return params;
             }
         };
-
-
-//        RequestQueue requestQueue = Volley.newRequestQueue(this);
-//        requestQueue.add(stringRequest);
-        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
-
-
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(request);
     }
-
-//    @Override
-//    public void onClick(View view) {
-//        if (view == signup)
-//            registerUser();
-//        if(view == tv)
-//            startActivity(new Intent(this, screen3.class));
-//    }
-
 }
