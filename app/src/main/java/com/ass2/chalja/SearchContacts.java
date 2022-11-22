@@ -100,22 +100,4 @@ public class SearchContacts extends AppCompatActivity {
         }
     }
 
-//    @NotNull
-//    private void getContacts() {
-//        Cursor cursor=getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI
-//        ,null
-//        ,null
-//        ,null
-//        ,null);
-//
-//        while(cursor != null && cursor.moveToNext()){
-//            String name=getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-//            String number=getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-//
-//            if(name != null && number != null){
-//                contactList.add(new contactModel(name, number));
-//            }
-//        }
-//
-//    }
 }

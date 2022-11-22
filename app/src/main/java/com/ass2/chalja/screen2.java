@@ -3,6 +3,7 @@ package com.ass2.chalja;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -28,18 +29,19 @@ public class screen2 extends AppCompatActivity {
 
     TextView tv,signup;
     EditText etUsername, etEmail, etPassword;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen2);
-        tv=findViewById(R.id.t1);
+        tv=findViewById(R.id.registerUserTVSignin);
         signup=findViewById(R.id.signUp);
         etUsername=findViewById(R.id.registerUserETName);
         etEmail=findViewById(R.id.registerUserETEmail);
         etPassword=findViewById(R.id.registerUserETPassword);
 
-
+        progressDialog = new ProgressDialog(this);
 
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,34 +53,38 @@ public class screen2 extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registerUser();
-                Toast.makeText(screen2.this, "signup clicked", Toast.LENGTH_SHORT).show();
+//                registerUser();
+//                Toast.makeText(screen2.this, "signup clicked", Toast.LENGTH_SHORT).show();
 
-//                Intent i = new Intent(screen2.this, screen3.class);
-//                startActivity(i);
+                Intent i = new Intent(screen2.this, screen3.class);
+                startActivity(i);
 
             }
         });
-//        signup.setOnClickListener(screen2.this);
+//        signup.setOnClickListener(this);
     }
 
-    private void registerUser(){
-        String email = etEmail.getText().toString().trim();
-        String username = etUsername.getText().toString().trim();
-        String password = etPassword.getText().toString().trim();
+    private void registerUser() {
+        final String email = etEmail.getText().toString().trim();
+        final String username = etUsername.getText().toString().trim();
+        final String password = etPassword.getText().toString().trim();
+
+        progressDialog.setMessage("Registering user...");
+        progressDialog.show();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
                 Constants.url_registerUser,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        progressDialog.dismiss();
+
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            Toast.makeText(screen2.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+
+                            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
 
                         } catch (JSONException e) {
-                            Toast.makeText(screen2.this, "error catch", Toast.LENGTH_SHORT).show();
-
                             e.printStackTrace();
                         }
                     }
@@ -86,12 +92,12 @@ public class screen2 extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(screen2.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        progressDialog.hide();
+                        Toast.makeText(getApplicationContext(), "Error Message", Toast.LENGTH_LONG).show();
                     }
-                }){
-            @Nullable
+                }) {
             @Override
-            protected Map<String, String> getPostParams() throws AuthFailureError {
+            protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("username", username);
                 params.put("email", email);
@@ -100,8 +106,20 @@ public class screen2 extends AppCompatActivity {
             }
         };
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+
+//        RequestQueue requestQueue = Volley.newRequestQueue(this);
+//        requestQueue.add(stringRequest);
+        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+
+
     }
+
+//    @Override
+//    public void onClick(View view) {
+//        if (view == signup)
+//            registerUser();
+//        if(view == tv)
+//            startActivity(new Intent(this, screen3.class));
+//    }
 
 }
