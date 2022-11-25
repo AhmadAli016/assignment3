@@ -2,4 +2,6 @@
     <string name="app_name">chal ja</string>
     <string name="gender">Gender</string>
     <string name="acknowledgement">I would like to receive your news letter and other personal information</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

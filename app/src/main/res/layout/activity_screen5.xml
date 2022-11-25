@@ -1,76 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black"
     android:orientation="vertical"
-
-    android:weightSum="1"
     tools:context=".screen5">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"
-        android:weightSum="3"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
         android:orientation="vertical"
-        android:background="@drawable/top_bar">
+        android:gravity="center_horizontal"
+        android:padding="20dp"
+        android:weightSum="1"
+        android:background="@color/black">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="180dp"
+            android:layout_height="0dp"
+            android:src="@drawable/img"
+            app:shapeAppearanceOverlay="@style/RoundedSquare"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-
-        android:weightSum="1">
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.2"
-            android:padding="20dp"
-            android:src="@drawable/menu"/>
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.6"
-            android:text="MESSAGES"
-            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.05"
+            android:text="User name"
+            android:textColor="@color/yellow_primary"
             android:gravity="center"
-            android:textSize="20sp"/>
-        <ImageView
-            android:padding="20dp"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.2"
-            android:src="@drawable/white_rect"/>
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"/>
 
-    </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.05"
+            android:text="Edit Profile"
+            android:textColor="@color/yellow_primary"
+            android:gravity="center_vertical"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.05"
+            android:text="Change Password"
+            android:textColor="@color/yellow_primary"
+            android:gravity="center_vertical"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:weightSum="1"
-            android:layout_weight="1">
+            android:layout_weight="0.1"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.05"
+                android:text="Log Out"
+                android:textColor="@color/yellow_primary"
+                android:gravity="center_vertical"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"/>
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.3"
-                android:padding="20dp"
-                android:src="@drawable/search"/>
-
-            <HorizontalScrollView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.7">
-
-
-
-            </HorizontalScrollView>
+                android:layout_weight="0.11"
+                />
 
         </LinearLayout>
 
@@ -78,50 +87,155 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.6"/>
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"
+            android:weightSum="2"
+            android:orientation="vertical"
+            android:background="@drawable/top_bar">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:weightSum="5"
-        android:layout_weight="0.1">
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:padding="20dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/message"/>
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:padding="20dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/call"/>
-        <ImageView
-            android:id="@+id/add"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:padding="10dp"
-            android:layout_margin="15dp"
-            android:background="@drawable/yellow_round_rect"
-            android:src="@drawable/add"/>
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:padding="20dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/contacts"/>
-        <ImageView
-            android:id="@+id/IDsetting"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:padding="20dp"
-            android:layout_height="match_parent"
-            android:onClick="takeScreenShot"
-            android:src="@drawable/setting"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+
+                android:weightSum="1">
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:padding="20dp"
+                    android:src="@drawable/menu"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.6"
+                    android:text="MESSAGES"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="20sp"/>
+                <ImageView
+                    android:padding="20dp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:src="@drawable/white_rect"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:weightSum="1"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:padding="20dp"
+                    android:src="@drawable/search"/>
+
+                <HorizontalScrollView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.7">
+
+
+
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="0.05"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/idtablayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chats"/>
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status"/>
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Calls"/>
+
+            </com.google.android.material.tabs.TabLayout>
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.6">
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/idviewpager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:weightSum="5"
+            android:layout_weight="0.1">
+            <ImageView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:padding="20dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/message"/>
+            <ImageView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:padding="20dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/call"/>
+            <ImageView
+                android:id="@+id/add"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/yellow_round_rect"
+                android:src="@drawable/add"/>
+            <ImageView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:padding="20dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/contacts"/>
+            <ImageView
+                android:id="@+id/IDsetting"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:padding="20dp"
+                android:layout_height="match_parent"
+                android:onClick="takeScreenShot"
+                android:src="@drawable/setting"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
